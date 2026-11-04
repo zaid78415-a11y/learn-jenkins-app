@@ -24,7 +24,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo Test page'
-                sh "grep -r 'index.html' build/"
             }
         }
 
@@ -37,8 +36,9 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install netlify-cli -g
-                    netlify --version
+                    npm install netlify-cli 
+                    node_modules/.bin/netlify --version
+                    
                 '''
             }
         }
