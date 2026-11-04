@@ -36,7 +36,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install netlify-cli@20.1.1 
+                    npm install netlify-cli@20.1.1 --no-audit --no-fund --ignore-scripts
                     node_modules/.bin/netlify --version
                     
                 '''
