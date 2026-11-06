@@ -40,17 +40,17 @@ pipeline {
         stage('Deploy staging') {
             agent {
                 docker {
-                    image 'node:18-alpine'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                    npm install netlify-cli@20.1.1 --no-audit --no-fund --ignore-scripts
-                    node_modules/.bin/netlify --version
+                    
+                    netlify --version
                     echo "DEPLOYING site Id: $NETLIFY_SITE_ID"
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy  --dir=build 
+                    netlify status
+                    netlify deploy  --dir=build 
                     
                 '''
             }
@@ -58,17 +58,17 @@ pipeline {
         stage('Deploy prod') {
             agent {
                 docker {
-                    image 'node:18-alpine'
+                    image 'my-playwright'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                    npm install netlify-cli@20.1.1 --no-audit --no-fund --ignore-scripts
-                    node_modules/.bin/netlify --version
+                   
+                    netlify --version
                     echo "DEPLOYING site Id: $NETLIFY_SITE_ID"
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy  --dir=build --prod
+                    netlify status
+                    netlify deploy  --dir=build --prod
                     
                 '''
             }
